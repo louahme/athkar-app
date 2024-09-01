@@ -1,0 +1,66 @@
+name: adkar
+description: "A new Flutter project."
+
+publish_to: 'none' 
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.4.3 <4.0.0'
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  google_fonts: ^6.2.1
+  bottom_navy_bar: ^6.0.0
+  provider: ^6.1.2
+
+  
+
+
+
+  cupertino_icons: ^1.0.6
+  flutter_animation_progress_bar: ^2.3.1
+  flutter_staggered_animations: ^1.1.0
+  percent_indicator: ^4.2.2
+  shared_preferences: ^2.0.15
+  share_plus: ^6.0.4
+  font_awesome_flutter: ^10.0.0
+  flutter_local_notifications: ^14.0.0
+  
+ 
+  
+  
+
+
+ 
+ 
+ 
+  
+  fluttertoast: ^8.0.9
+  overlay_support: ^2.1.0
+  flutter_overlay_window: ^0.4.5
+  url_launcher: ^6.3.0
+  
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+  flutter_localizations:
+    sdk: flutter  
+
+flutter:
+
+
+  uses-material-design: true
+
+   
+  assets:
+    - images/
+    - images/random/
+    - images/buttons/
+    - images/class_adkar/
+ 
