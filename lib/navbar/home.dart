@@ -1,116 +1,104 @@
-import 'dart:async';
-import 'dart:math';
+import 'package:adkar/%D8%B5%D9%81%D8%AD%D8%A7%D8%AA/%D8%A7%D9%84%D8%A7%D8%B0%D9%83%D8%A7%D8%B1/evning.dart';
+import 'package:adkar/%D8%B5%D9%81%D8%AD%D8%A7%D8%AA/%D8%A7%D9%84%D8%A7%D8%B0%D9%83%D8%A7%D8%B1/morrning.dart';
+import 'package:adkar/%D8%B5%D9%81%D8%AD%D8%A7%D8%AA/%D8%A7%D9%84%D8%A7%D8%B0%D9%83%D8%A7%D8%B1/salatek.dart';
+import 'package:adkar/%D8%B5%D9%81%D8%AD%D8%A7%D8%AA/%D8%A7%D9%84%D8%A7%D8%B0%D9%83%D8%A7%D8%B1/sleeping.dart';
 import 'package:flutter/material.dart';
-
 import 'package:adkar/clases/AdhkarPage.dart';
 import 'package:adkar/clases/AhadithPage.dart';
 import 'package:adkar/clases/AqwalUlamaPage.dart';
 import 'package:adkar/clases/DuaaPage.dart';
 import 'package:adkar/%D8%B5%D9%81%D8%AD%D8%A7%D8%AA/%D8%A7%D9%84%D9%82%D8%B1%D8%A7%D9%86%20%D8%A7%D9%84%D9%83%D8%B1%D9%8A%D9%85/quraan.dart';
 
-class Home extends StatefulWidget {
+class Home extends StatelessWidget {
   const Home({super.key});
-
-  @override
-  State<Home> createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
-  final List<String> _images = [
-    'images/random/image1.jpg',
-    'images/random/image2.jpg',
-    'images/random/image3.jpg',
-    'images/random/image4.jpg',
-    'images/random/image5.jpg',
-    'images/random/image6.jpg',
-    'images/random/image7.jpg',
-    'images/random/image8.jpg',
-    'images/random/image9.jpg',
-  ];
-
-  int _currentImageIndex = 0;
-  Timer? _timer;
-
-  @override
-  void initState() {
-    super.initState();
-    _startImageChangeTimer();
-  }
-
-  @override
-  void dispose() {
-    _timer?.cancel();
-    super.dispose();
-  }
-
-  void _startImageChangeTimer() {
-    _timer = Timer.periodic(Duration(seconds: 10), (timer) {
-      _changeImageRandomly();
-    });
-  }
-
-  void _changeImageRandomly() {
-    setState(() {
-      _currentImageIndex = Random().nextInt(_images.length);
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Stack(
+        body: ListView(
+          padding: EdgeInsets.all(10.0),
           children: [
-            // خلفية الصفحة كصورة
-            Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('images/background.jpg'),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            ListView(
-              padding: EdgeInsets.zero,
-              children: [
-                SizedBox(height: 15),
-                // صورة متغيرة تلقائيًا
-                GestureDetector(
-                  onTap: _changeImageRandomly,
-                  child: Container(
-                    margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                    height: 230,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      image: DecorationImage(
-                        image: AssetImage(_images[_currentImageIndex]),
-                        fit: BoxFit.cover,
-                        colorFilter: ColorFilter.mode(
-                            Colors.black.withOpacity(0.1), BlendMode.darken),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 20),
-                // أزرار الأقسام الأربعة في سطر منفصل
-                _buildSectionButton(
-                    context, 'images/buttons/1.jpg', AdhkarPage()),
-                _buildSectionButton(
-                    context, 'images/buttons/2.jpg', AhadithPage()),
-                _buildSectionButton(
-                    context, 'images/buttons/3.jpg', DuaaPage()),
-                _buildSectionButton(
-                    context, 'images/buttons/4.jpg', AqwalUlamaPage()),
-                _buildSectionButton(context, 'images/buttons/5.jpg', Quraan()),
-              ],
-            ),
+            _buildSectionTitle('قسم الأذكار'),
+            _buildButtonRow(context, [
+              _buildSectionButton(
+                  context, 'images/class_adkar/1.jpg', MorningDhikrPage()),
+              _buildSectionButton(
+                  context, 'images/class_adkar/2.jpg', EveningDhikrPage()),
+            ]),
+            _buildButtonRow(context, [
+              _buildSectionButton(
+                  context, 'images/class_adkar/3.jpg', salatekPage()),
+              _buildSectionButton(
+                  context, 'images/class_adkar/4.jpg', Sleeping()),
+            ]),
+            _buildSectionTitle('قسم الأحاديث'),
+            _buildButtonRow(context, [
+              _buildSectionButton(
+                  context, 'images/buttons/hadith1.jpg', AhadithPage()),
+              _buildSectionButton(
+                  context, 'images/buttons/hadith2.jpg', AhadithPage()),
+            ]),
+            _buildButtonRow(context, [
+              _buildSectionButton(
+                  context, 'images/buttons/hadith3.jpg', AhadithPage()),
+              _buildSectionButton(
+                  context, 'images/buttons/hadith4.jpg', AhadithPage()),
+            ]),
+            _buildSectionTitle('قسم الأدعية'),
+            _buildButtonRow(context, [
+              _buildSectionButton(
+                  context, 'images/buttons/duaa1.jpg', DuaaPage()),
+              _buildSectionButton(
+                  context, 'images/buttons/duaa2.jpg', DuaaPage()),
+            ]),
+            _buildSectionTitle('قسم العلم'),
+            _buildButtonRow(context, [
+              _buildSectionButton(
+                  context, 'images/buttons/ilm1.jpg', AqwalUlamaPage()),
+              _buildSectionButton(
+                  context, 'images/buttons/ilm2.jpg', AqwalUlamaPage()),
+            ]),
+            _buildButtonRow(context, [
+              _buildSectionButton(
+                  context, 'images/buttons/ilm3.jpg', AqwalUlamaPage()),
+              _buildSectionButton(
+                  context, 'images/buttons/ilm4.jpg', AqwalUlamaPage()),
+            ]),
+            _buildButtonRow(context, [
+              _buildSectionButton(
+                  context, 'images/buttons/ilm5.jpg', AqwalUlamaPage()),
+            ]),
+            _buildSectionTitle('قسم القرآن الكريم'),
+            _buildSectionButton(context, 'images/buttons/quraan.jpg', Quraan()),
           ],
         ),
       ),
     );
   }
 
-  // دالة لإنشاء زر للقسم بدون كتابة وبحواف بيضاء
+  Widget _buildSectionTitle(String title) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 16.0),
+      child: Text(
+        title,
+        style: TextStyle(
+          fontSize: 24,
+          fontWeight: FontWeight.bold,
+          color: Colors.black,
+        ),
+        textAlign: TextAlign.right,
+      ),
+    );
+  }
+
+  Widget _buildButtonRow(BuildContext context, List<Widget> buttons) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: buttons,
+    );
+  }
+
   Widget _buildSectionButton(
       BuildContext context, String imagePath, Widget page) {
     return GestureDetector(
@@ -121,21 +109,22 @@ class _HomeState extends State<Home> {
         );
       },
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 15, horizontal: 50),
+        margin: EdgeInsets.symmetric(vertical: 10),
         height: 90,
+        width: 180,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           border: Border.all(color: Colors.white24, width: 2),
           image: DecorationImage(
-            image: AssetImage(imagePath),
-            fit: BoxFit.cover,
-          ),
+              image: AssetImage(imagePath),
+              fit: BoxFit.cover,
+              alignment: Alignment.bottomCenter),
           boxShadow: [
             BoxShadow(
+              color: Colors.black26,
               offset: Offset(0, 4),
               blurRadius: 8,
-              color: Colors.white10,
-            )
+            ),
           ],
         ),
       ),
