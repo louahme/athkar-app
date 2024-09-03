@@ -1,3 +1,4 @@
+import 'package:adkar/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -22,8 +23,6 @@ class SettingsPage extends StatelessWidget {
               image: DecorationImage(
                 image: AssetImage('images/background.png'),
                 fit: BoxFit.cover,
-                colorFilter: ColorFilter.mode(
-                    Colors.black.withOpacity(0.6), BlendMode.darken),
               ),
             ),
           ),
@@ -38,8 +37,9 @@ class SettingsPage extends StatelessWidget {
                 Text(
                   'تواصل معنا',
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                        color: Colors.green,
+                        color: Colors.white,
                         fontWeight: FontWeight.bold,
+                        fontSize: 22,
                       ),
                 ),
                 const SizedBox(height: 20),
@@ -50,14 +50,12 @@ class SettingsPage extends StatelessWidget {
                         icon: FontAwesomeIcons.instagram,
                         label: 'Instagram',
                         url: 'https://www.instagram.com/_desdev/',
-                        color: Colors.black,
                       ),
                       const SizedBox(height: 20),
                       _buildSocialMediaButton(
                         icon: FontAwesomeIcons.xTwitter,
                         label: 'Twitter',
                         url: 'https://twitter.com/yourprofile',
-                        color: Colors.black,
                       ),
                       const SizedBox(height: 20),
                       _buildSocialMediaButton(
@@ -65,21 +63,18 @@ class SettingsPage extends StatelessWidget {
                         label: 'TikTok',
                         url:
                             'https://www.tiktok.com/@_devdes?_t=8pN4MHa1oNK&_r=1',
-                        color: Colors.black,
                       ),
                       const SizedBox(height: 20),
                       _buildSocialMediaButton(
                         icon: FontAwesomeIcons.linkedinIn,
                         label: 'LinkedIn',
                         url: 'https://linkedin.com/in/yourprofile',
-                        color: Colors.black,
                       ),
                       const SizedBox(height: 20),
                       _buildSocialMediaButton(
                         icon: FontAwesomeIcons.github,
                         label: 'GitHub',
                         url: 'https://github.com/louahme',
-                        color: Colors.black,
                       ),
                     ],
                   ),
@@ -96,14 +91,13 @@ class SettingsPage extends StatelessWidget {
     required IconData icon,
     required String label,
     required String url,
-    required Color color,
   }) {
     return GestureDetector(
       onTap: () => _launchURL(url),
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 20),
         decoration: BoxDecoration(
-          color: color,
+          color: blue,
           borderRadius: BorderRadius.circular(12),
           boxShadow: [
             BoxShadow(
